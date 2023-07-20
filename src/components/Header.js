@@ -1,9 +1,23 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+
 import Wrapper from "../style/HeaderStyle";
+import { logoutUser } from "../store/slices/userSlice";
 
 function Header() {
+  // Component State
   const [showNav, setShowNav] = useState(false);
+
+  // Redux
+  const dispatch = useDispatch();
+  const { data } = useSelector((state) => state.user);
+
+  // Function -> Logout
+  function logoutHandler() {
+    dispatch(logoutUser());
+  }
+
   return (
     <Wrapper>
       <div className="logo">
@@ -32,7 +46,13 @@ function Header() {
         </ul>
       </nav>
       <div className="login">
-        <p>Login</p>
+        {data ? (
+          <p onClick={logoutHandler}>Logout</p>
+        ) : (
+          <Link to={"/auth"}>
+            <p>Login</p>
+          </Link>
+        )}
       </div>
     </Wrapper>
   );
