@@ -5,6 +5,7 @@ import DetailPage from "./pages/DetailPage";
 import TopRated from "./pages/TopRated";
 import Upcoming from "./pages/Upcoming";
 import NowPlaying from "./pages/NowPlaying";
+import AuthenticationPage from "./pages/AuthenticationPage";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/now-playing" element={<NowPlaying />} />
         <Route path="/top-rated" element={<TopRated />} />
         <Route path="/upcoming" element={<Upcoming />} />
+        <Route path="/auth" element={<AuthenticationPage />} />
       </Routes>
     </BrowserRouter>
   );

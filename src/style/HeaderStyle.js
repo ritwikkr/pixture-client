@@ -6,6 +6,7 @@ const Wrapper = styled.header`
   color: white;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 20px 100px;
   .logo {
     display: flex;
@@ -21,6 +22,7 @@ const Wrapper = styled.header`
     margin-right: 30px;
   }
   nav {
+    border: 2px solid red;
     .ham {
       display: none;
       i {
@@ -30,10 +32,12 @@ const Wrapper = styled.header`
     ul {
       display: flex;
       width: 50vw;
-      justify-content: space-between;
-      li {
-        font-size: 1.5rem;
-        list-style: none;
+      a {
+        margin: 0 20px;
+        li {
+          font-size: 1.5rem;
+          list-style: none;
+        }
       }
     }
   }

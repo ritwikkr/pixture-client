@@ -31,6 +31,9 @@ function Header() {
           </Link>
         </ul>
       </nav>
+      <div className="login">
+        <p>Login</p>
+      </div>
     </Wrapper>
   );
 }
