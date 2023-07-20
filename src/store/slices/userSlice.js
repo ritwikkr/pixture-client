@@ -15,14 +15,17 @@ export const registerUser = createAsyncThunk(
 );
 
 // Login User
-export const loginUser = createAsyncThunk("loginUser", async (body) => {
-  try {
-    const { data } = await axios.post(`/api/v1/user/login`, body);
-    console.log(data);
-  } catch (error) {
-    console.log(error);
+export const loginUser = createAsyncThunk(
+  "loginUser",
+  async (body, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.post(`/api/v1/user/login`, body);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
   }
-});
+);
 
 const userSlice = createSlice({
   name: "user",
@@ -38,6 +41,7 @@ const userSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
+    // Register Reducer
     builder.addCase(registerUser.pending, (state, action) => {
       state.isLoading = true;
     });
@@ -47,6 +51,18 @@ const userSlice = createSlice({
       localStorage.setItem("user", JSON.stringify(action.payload));
     });
     builder.addCase(registerUser.rejected, (state, action) => {
+      state.errMsg = action.payload;
+    });
+
+    // Login Reducer
+    builder.addCase(loginUser.pending, (state, action) => {
+      state.isLoading = true;
+    });
+    builder.addCase(loginUser.fulfilled, (state, action) => {
+      state.data = action.payload;
+      localStorage.setItem("user", JSON.stringify(action.payload));
+    });
+    builder.addCase(loginUser.rejected, (state, action) => {
       state.errMsg = action.payload;
     });
   },

@@ -4,9 +4,11 @@ import { useNavigate } from "react-router-dom";
 
 import Wrapper from "../style/AuthenticationPageStyle";
 import { loginUser, registerUser } from "../store/slices/userSlice";
+import Alert from "../components/Alert";
 
 function AuthenticationPage() {
   // Component State
+  const [showLoginForm, setShowLoginForm] = useState(true);
   const [details, setDetails] = useState({ name: "", email: "", password: "" });
 
   //   Redux
@@ -26,20 +28,32 @@ function AuthenticationPage() {
   //   Form Submit Handler
   function formSubmitHandler(e) {
     e.preventDefault();
+    if (showLoginForm) {
+      return dispatch(loginUser(details));
+    }
     dispatch(registerUser(details));
   }
   return (
     <Wrapper>
       <div className="body">
+        <Alert alertText={"Alererer"} />
+        <div className="title">
+          {showLoginForm ? <h1>Login</h1> : <h1>Register</h1>}
+        </div>
         <form onSubmit={formSubmitHandler}>
-          <div className="form-content">
-            <label htmlFor="name">Name</label>
-            <input
-              type="text"
-              id="name"
-              onChange={(e) => setDetails({ ...details, name: e.target.value })}
-            />
-          </div>
+          {!showLoginForm && (
+            <div className="form-content">
+              <label htmlFor="name">Name</label>
+              <input
+                type="text"
+                id="name"
+                onChange={(e) =>
+                  setDetails({ ...details, name: e.target.value })
+                }
+              />
+            </div>
+          )}
+
           <div className="form-content">
             <label htmlFor="email">Email</label>
             <input
@@ -62,6 +76,19 @@ function AuthenticationPage() {
           </div>
           <div className="form-content">
             <button type="submit">Submit</button>
+          </div>
+          <div className="form-content">
+            {showLoginForm ? (
+              <p>
+                New Here?{" "}
+                <span onClick={() => setShowLoginForm(false)}>Register</span>
+              </p>
+            ) : (
+              <p>
+                Already Member?{" "}
+                <span onClick={() => setShowLoginForm(true)}>Login</span>{" "}
+              </p>
+            )}
           </div>
         </form>
       </div>
