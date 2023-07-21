@@ -22,7 +22,6 @@ const Wrapper = styled.header`
     margin-right: 30px;
   }
   nav {
-    border: 2px solid red;
     .ham {
       display: none;
       i {
@@ -39,6 +38,20 @@ const Wrapper = styled.header`
           list-style: none;
         }
       }
+    }
+  }
+  > .login {
+    display: flex;
+    align-items: center;
+    > .fav {
+      /* border: 2px solid red; */
+      font-size: 22px;
+      cursor: pointer;
+      margin-right: 20px;
+      color: red;
+    }
+    p {
+      cursor: pointer;
     }
   }
 

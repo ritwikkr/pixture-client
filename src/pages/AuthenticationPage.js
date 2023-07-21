@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import Wrapper from "../style/AuthenticationPageStyle";
 import { loginUser, registerUser } from "../store/slices/userSlice";
+import { showAlert, hideAlert } from "../store/slices/alertSlice";
 import Alert from "../components/Alert";
 
 function AuthenticationPage() {
@@ -13,7 +14,7 @@ function AuthenticationPage() {
 
   //   Redux
   const dispatch = useDispatch();
-  const { data } = useSelector((state) => state.user);
+  const { data, errMsg } = useSelector((state) => state.user);
 
   // Navigation
   const navigate = useNavigate();
@@ -21,9 +22,29 @@ function AuthenticationPage() {
   // Side Effect -> Redirect to homepage when user logs in
   useEffect(() => {
     if (data) {
-      navigate("/");
+      dispatch(
+        showAlert({ text: "Authentication Successful", type: "success" })
+      );
+      const timer = setTimeout(() => {
+        dispatch(hideAlert());
+        navigate("/");
+      }, 3000);
+
+      return () => clearTimeout(timer);
     }
-  }, [data, navigate]);
+  }, [data, dispatch, navigate]);
+
+  // Side Effect -> Show error alert
+  useEffect(() => {
+    if (errMsg) {
+      dispatch(showAlert({ text: errMsg, type: "error" }));
+      const timer = setTimeout(() => {
+        dispatch(hideAlert());
+      }, 3000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [errMsg, dispatch]);
 
   //   Form Submit Handler
   function formSubmitHandler(e) {
@@ -33,10 +54,11 @@ function AuthenticationPage() {
     }
     dispatch(registerUser(details));
   }
+
   return (
     <Wrapper>
       <div className="body">
-        <Alert alertText={"Alererer"} />
+        <Alert />
         <div className="title">
           {showLoginForm ? <h1>Login</h1> : <h1>Register</h1>}
         </div>

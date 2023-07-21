@@ -46,6 +46,9 @@ function Header() {
         </ul>
       </nav>
       <div className="login">
+        <div className="fav">
+          <i class="fa-solid fa-heart"></i>
+        </div>
         {data ? (
           <p onClick={logoutHandler}>Logout</p>
         ) : (
