@@ -10,6 +10,14 @@ const Wrapper = styled.div`
     justify-content: center;
     flex-wrap: wrap;
     overflow-x: hidden;
+    > .empty {
+      > p:nth-child(2) {
+        /* border: 2px solid red; */
+        text-align: center;
+        margin-top: 20px;
+        font-size: 20px;
+      }
+    }
   }
 `;
 

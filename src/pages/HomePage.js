@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import Wrapper from "../style/HomePageStyle";
-import { BASE_URL, API_KEY } from "../helper/BaseURL";
 import Banner from "../components/Banner";
 import MoviesContainer from "../components/MoviesContainer";
 import Loading from "../components/LoadingScreen";

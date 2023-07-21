@@ -2,6 +2,9 @@ import styled from "styled-components";
 
 const Wrapper = styled.header`
   height: 80px;
+  position: fixed;
+  z-index: 100;
+  width: 100vw;
   background-color: black;
   color: white;
   display: flex;

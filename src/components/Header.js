@@ -48,7 +48,7 @@ function Header() {
       <div className="login">
         <div className="fav">
           <Link to={"/fav"}>
-            <i class="fa-solid fa-heart"></i>
+            <i className="fa-solid fa-heart"></i>
           </Link>
         </div>
         {data ? (

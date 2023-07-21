@@ -1,26 +1,34 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
-import { postFavMovie } from "../store/slices/movieSlice";
+import { postFavMovie, removeFav } from "../store/slices/movieSlice";
 import { IMG_PATH } from "../helper/BaseURL";
 import Wrapper from "../style/MovieCardStyle";
+import Heart from "./Heart";
 
 function MovieCard({ movie }) {
   // Redux
   const dispatch = useDispatch();
+  const { favMovie } = useSelector((state) => state.movie);
 
   // Add to favourite
   function addToFav(e, movie) {
     e.preventDefault();
-    dispatch(postFavMovie(movie));
+    // Check if the movie is in favorite list
+    const isFavorite = favMovie.find((mov) => mov.id === movie.id);
+    if (isFavorite) {
+      dispatch(removeFav(movie.id));
+    } else {
+      dispatch(postFavMovie(movie));
+    }
   }
   return (
     <Wrapper>
       <Link to={`/detailPage/${movie.id}`} key={movie.id}>
         <div className="tile" key={movie.id}>
           <div className="heart" onClick={(e) => addToFav(e, movie)}>
-            <i class="fa-regular fa-heart"></i>
+            <Heart id={movie.id} />
           </div>
           <img src={IMG_PATH + movie.poster_path} alt={movie.title} />
           <div className="details">

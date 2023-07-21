@@ -13,8 +13,8 @@ function Banner({ images }) {
       <div className="carousel-wrapper">
         <Carousel infiniteLoop useKeyboardArrows autoPlay>
           {imageList.map((image) => (
-            <Link to={`/detailPage/${image.id}`}>
-              <div key={image.id} className="slide">
+            <Link to={`/detailPage/${image.id}`} key={image.id}>
+              <div className="slide">
                 <img src={IMG_PATH + image.backdrop_path} alt="" />
               </div>
             </Link>

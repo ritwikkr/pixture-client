@@ -10,7 +10,7 @@ function MoviesContainer({ movieList, title }) {
         <h1>{title}</h1>
         <div className="body">
           {movieList.map((movie) => (
-            <MovieCard movie={movie} />
+            <MovieCard movie={movie} key={movie.id} />
           ))}
         </div>
       </div>

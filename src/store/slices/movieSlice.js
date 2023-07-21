@@ -34,6 +34,12 @@ const movieSlice = createSlice({
         localStorage.setItem("favMovies", JSON.stringify(state.favMovie));
       }
     },
+    removeFav: (state, action) => {
+      const id = action.payload;
+      state.favMovie = state.favMovie.filter((movie) => movie.id !== id);
+
+      localStorage.setItem("favMovies", JSON.stringify(state.favMovie));
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchMovies.pending, (state) => {
@@ -49,5 +55,5 @@ const movieSlice = createSlice({
   },
 });
 
-export const { postFavMovie } = movieSlice.actions;
+export const { postFavMovie, removeFav } = movieSlice.actions;
 export default movieSlice.reducer;
