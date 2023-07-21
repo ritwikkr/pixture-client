@@ -1,38 +1,33 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
 
 import Wrapper from "../style/HomePageStyle";
 import { BASE_URL, API_KEY } from "../helper/BaseURL";
 import Banner from "../components/Banner";
 import MoviesContainer from "../components/MoviesContainer";
 import Loading from "../components/LoadingScreen";
+import { fetchMovies } from "../store/slices/movieSlice";
 
 function HomePage() {
-  // Component Data
-  const [movieList, setMovieList] = useState([]);
+  // Redux
+  const dispatch = useDispatch();
+  const { data, isLoading } = useSelector((state) => state.movie);
 
+  // Side Effect -> Fetching Movies
   useEffect(() => {
-    fetchMovies();
-  }, []);
+    dispatch(fetchMovies());
+  }, [dispatch]);
 
-  async function fetchMovies() {
-    try {
-      const { data } = await axios.get(`${BASE_URL}/popular?${API_KEY}`);
-      setMovieList(data.results);
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  // Checking if data is fetched or not
+  if (isLoading || !data) return <Loading />;
 
-  if (movieList.length === 0) {
-    return <Loading />;
-  }
   return (
     <Wrapper>
       <div className="banner">
-        <Banner images={movieList} />
+        <Banner images={data} />
       </div>
-      <MoviesContainer movieList={movieList} title={"popular"} />
+      <MoviesContainer movieList={data} title={"popular"} />
     </Wrapper>
   );
 }

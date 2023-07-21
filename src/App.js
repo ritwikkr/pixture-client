@@ -6,6 +6,7 @@ import TopRated from "./pages/TopRated";
 import Upcoming from "./pages/Upcoming";
 import NowPlaying from "./pages/NowPlaying";
 import AuthenticationPage from "./pages/AuthenticationPage";
+import FavouritePage from "./pages/FavouritePage";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/top-rated" element={<TopRated />} />
         <Route path="/upcoming" element={<Upcoming />} />
         <Route path="/auth" element={<AuthenticationPage />} />
+        <Route path="/fav" element={<FavouritePage />} />
       </Routes>
     </BrowserRouter>
   );

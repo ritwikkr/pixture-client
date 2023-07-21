@@ -47,7 +47,9 @@ function Header() {
       </nav>
       <div className="login">
         <div className="fav">
-          <i class="fa-solid fa-heart"></i>
+          <Link to={"/fav"}>
+            <i class="fa-solid fa-heart"></i>
+          </Link>
         </div>
         {data ? (
           <p onClick={logoutHandler}>Logout</p>
