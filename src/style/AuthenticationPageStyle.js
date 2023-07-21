@@ -1,8 +1,7 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  border: 2px solid blue;
-  height: calc(100vh - 80px);
+  padding-top: 80px;
   > .body {
     padding: 10px;
     border: 5px dashed rgb(246, 202, 3);

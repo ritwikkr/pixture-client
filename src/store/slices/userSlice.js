@@ -1,12 +1,17 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+const API_URL = `https://pixture-api.onrender.com`;
+
 // Register User
 export const registerUser = createAsyncThunk(
   "registerUser",
   async (body, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post(`/api/v1/user/register`, body);
+      const { data } = await axios.post(
+        `${API_URL}/api/v1/user/register`,
+        body
+      );
       return data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -19,7 +24,7 @@ export const loginUser = createAsyncThunk(
   "loginUser",
   async (body, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post(`/api/v1/user/login`, body);
+      const { data } = await axios.post(`${API_URL}/api/v1/user/login`, body);
       return data;
     } catch (error) {
       return rejectWithValue(error.response.data);
