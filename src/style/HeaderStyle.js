@@ -1,4 +1,13 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const flipHeartX = keyframes`
+  from {
+    transform: perspective(800px) rotateY(0deg);
+  }
+  to {
+    transform: perspective(800px) rotateY(360deg);
+  }
+`;
 
 const Wrapper = styled.header`
   height: 80px;
@@ -65,6 +74,9 @@ const Wrapper = styled.header`
       cursor: pointer;
       margin-right: 20px;
       color: red;
+      &:hover {
+        animation: ${flipHeartX} 1s linear; /* Adjust the animation duration as needed */
+      }
     }
     p {
       cursor: pointer;
