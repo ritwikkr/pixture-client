@@ -36,6 +36,20 @@ const Wrapper = styled.header`
       width: 50vw;
       a {
         margin: 0 20px;
+        position: relative;
+        &:after {
+          content: "";
+          position: absolute;
+          bottom: 2;
+          left: 0;
+          width: 0;
+          height: 5px;
+          background-color: white;
+          transition: width 0.3s ease;
+        }
+        &:hover:after {
+          width: 100%;
+        }
         li {
           font-size: 1.5rem;
           list-style: none;
