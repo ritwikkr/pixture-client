@@ -34,6 +34,30 @@ const Wrapper = styled.div`
       }
     }
   }
+
+  @media only screen and (max-width: 1200px) {
+    > .body {
+      width: 35%;
+    }
+  }
+
+  @media only screen and (max-width: 1000px) {
+    > .body {
+      width: 40%;
+    }
+  }
+
+  @media only screen and (max-width: 800px) {
+    > .body {
+      width: 50%;
+    }
+  }
+
+  @media only screen and (max-width: 600px) {
+    > .body {
+      width: 80%;
+    }
+  }
 `;
 
 export default Wrapper;
