@@ -8,6 +8,7 @@ import Wrapper from "../style/BannerStyle";
 
 function Banner({ images }) {
   const imageList = images.slice(1, 4);
+
   return (
     <Wrapper>
       <div className="carousel-wrapper">

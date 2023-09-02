@@ -8,9 +8,8 @@ const Wrapper = styled.div`
           .slider {
             .slide {
               img {
-                /* border: 5px solid blue; */
-                height: 60vh;
-                object-fit: cover;
+                height: 100vh;
+                object-fit: contain;
               }
             }
           }
