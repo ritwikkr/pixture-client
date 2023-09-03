@@ -39,7 +39,7 @@ function MovieCard({ movie }) {
                 7.5<i className="fa-solid fa-star"></i>
               </p>
             </div>
-            <p className="desc">{movie.overview.slice(0, 100) + "..."}</p>
+            <p className="desc">{movie.overview.slice(0, 80) + "..."}</p>
           </div>
           <div className="backdrop"></div>
         </div>

@@ -9,6 +9,7 @@ const Wrapper = styled.div`
       text-transform: uppercase;
     }
     .body {
+      margin-top: 25px;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;

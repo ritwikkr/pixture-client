@@ -3,7 +3,9 @@ import styled from "styled-components";
 const Wrapper = styled.div`
   .tile {
     cursor: pointer;
+
     position: relative;
+    overflow-y: hidden;
     width: 250px;
     height: 350px;
     margin: 5px;
@@ -34,18 +36,18 @@ const Wrapper = styled.div`
       z-index: 1;
       transform: scale(1.1);
     }
-    &:hover .details {
-      display: block;
-    }
+    &:hover .details,
     &:hover .backdrop {
       display: block;
     }
     .details {
       z-index: 1;
-      display: none;
-      padding: 20px;
+      /* display: none; */
+      padding: 15px;
       position: absolute;
       bottom: 0;
+      transition: all 0.2s ease-in;
+      transform: translateY(100%);
       .title {
         font-weight: bolder;
         font-size: 1.5rem;
@@ -69,6 +71,9 @@ const Wrapper = styled.div`
       width: 100%;
       background-color: black;
       opacity: 0.5;
+    }
+    &:hover .details {
+      transform: translateY(0);
     }
   }
 `;
