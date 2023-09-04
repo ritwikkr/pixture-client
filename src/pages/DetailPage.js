@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { BASE_URL, API_KEY, IMG_PATH } from "../helper/BaseURL";
 import Loading from "../components/LoadingScreen";
+import Trailer from "../components/Trailer";
 
 function DetailPage() {
   const [movie, setMovie] = useState({});
@@ -16,7 +17,9 @@ function DetailPage() {
 
   async function fetchMovieDetails(id) {
     try {
-      const { data } = await axios.get(`${BASE_URL}/${id}?${API_KEY}`);
+      const { data } = await axios.get(
+        `${BASE_URL}/${id}?${API_KEY}&append_to_response=videos`
+      );
       setMovie(data);
     } catch (error) {
       console.log(error);
@@ -26,8 +29,6 @@ function DetailPage() {
   if (!movie.id) {
     return <Loading />;
   }
-
-  // console.log(movie);
 
   const {
     backdrop_path,
@@ -81,6 +82,7 @@ function DetailPage() {
           </div>
         </div>
       </div>
+      <Trailer videos={movie.videos} />
       <div className="links">
         <div className="heading">
           <h1>Useful Links</h1>

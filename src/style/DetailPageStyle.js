@@ -1,13 +1,14 @@
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  padding: 20px 100px;
+  padding: 90px 100px 0;
   .poster {
+    /* border: 2px solid red; */
     height: 50vh;
     img {
       height: 100%;
       width: 100%;
-      object-fit: cover;
+      object-fit: contain;
     }
   }
   .movie {
